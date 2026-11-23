@@ -35,7 +35,7 @@ public class teleopLimelight extends LinearOpMode {
     public static long LOCK_LOST_MS = 300;
 
     // If your robot drives backward, change this to a negative value (e.g., -0.40)
-    public static double CHASE_FWD_POWER = -0.40;
+    public static double CHASE_FWD_POWER = -0.2;
     public static double TURN_KP = -0.025;
     public static double MIN_TURN = 0.08;
     public static double MAX_TURN = 0.60;
@@ -47,9 +47,9 @@ public class teleopLimelight extends LinearOpMode {
     public static double COAST_MAX_DIST = 26.0;
     public static double COAST_POWER = 0.25;
     public static long COAST_MS = 450;
-    public static long TARGET_LOSS_GRACE_MS = 250; // Prevents flickering when target is lost briefly
+    public static long TARGET_LOSS_GRACE_MS = 500; // Prevents flickering when target is lost briefly
     public static long PICKUP_DWELL_MS = 600;
-    public static double INTAKE_POWER = 1.0;
+    public static double INTAKE_POWER = - 1.0;
 
     private static final String MOTOR_LF = "motor_front_left";
     private static final String MOTOR_RF = "motor_front_right";
@@ -177,7 +177,7 @@ public class teleopLimelight extends LinearOpMode {
         LLResultTypes.DetectorResult target = findTarget();
 
         if (target != null) {
-            double tx = target.getTargetXDegrees();
+            double tx = -target.getTargetXDegrees();
             double ty = target.getTargetYDegrees();
             double ta = target.getTargetArea();
             double estimatedDist = distanceFromTa(ta);
